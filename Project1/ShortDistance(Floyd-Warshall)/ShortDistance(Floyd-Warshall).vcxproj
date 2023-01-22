@@ -21,10 +21,9 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{7120f019-df7b-4a84-af54-4253c17a270b}</ProjectGuid>
-    <RootNamespace>PriorityQueue</RootNamespace>
+    <ProjectGuid>{6a56383c-9733-482d-80b5-1d5b75447986}</ProjectGuid>
+    <RootNamespace>ShortDistanceFloydWarshall</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-    <ProjectName>ShortDistance(Dijstra)</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
