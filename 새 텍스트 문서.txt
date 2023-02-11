@@ -1,0 +1,3 @@
+https://gall.dcinside.com/board/view/?id=programming&no=1358794
+
+일반적인 sort와 queueu의 priority_queue의 sort에서 compare기준이 다르다(반대)
