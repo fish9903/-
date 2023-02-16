@@ -1,3 +1,89 @@
 https://gall.dcinside.com/board/view/?id=programming&no=1358794
 
 일반적인 sort와 queueu의 priority_queue의 sort에서 compare기준이 다르다(반대)
+set, map, unordered_set, unordered_map
+next_permutation
+
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+
+빛의 경로 사이클 DFS, BFS로
+#include <string>
+#include <vector>
+#include <string>
+#include <algorithm>
+
+
+using namespace std;
+
+// 0, 1, 2, 3
+// R, L, D, U
+
+bool cache[501][501][4];
+int dr[4] = {0, 0, 1, -1};
+int dc[4] = {1, -1, 0, 0};
+
+int LEFT[4] = {3, 2, 0, 1};
+int RIGHT[4] = {2, 3, 1, 0};
+
+int R, C;
+// bool check = false;
+int a;
+
+void dfs(vector<string> &grid, int sr, int sc, int si, int r, int c, int in, int cnt){
+    
+    if(r == sr && c == sc && si == in && cnt != 0){
+        a = cnt;
+        return;
+    }
+    
+    bool &ret = cache[r][c][in];
+    // if(ret != false) return;
+    ret = true;
+    
+    int out;
+    
+    if(grid[r][c] == 'S'){
+        out = in;
+    }
+    else if(grid[r][c] == 'L'){
+        out = LEFT[in];
+    }
+    else if(grid[r][c] == 'R'){
+        out = RIGHT[in];
+    }
+
+    int nr = r + dr[out];
+    int nc = c + dc[out];
+
+    if(nr < 0) nr = R-1;
+    if(nc < 0) nc = C-1;
+    if(nr >= R) nr = 0;
+    if(nc >= C) nc = 0;
+    
+    dfs(grid, sr, sc, si, nr, nc, out, cnt+1);
+}
+
+vector<int> solution(vector<string> grid) {
+    memset(cache, 0, sizeof(cache));
+    R = grid.size();
+    C = grid[0].size();
+    vector<int> answer;
+    
+    int ans;
+    // 모든 격자에 대해 모든 방향으로 쏴보기
+    for(int i = 0; i < grid.size(); i++){
+        for(int j = 0; j < grid[i].size(); j++){
+            for(int k = 0; k < 4; k++){
+                if(!cache[i][j][k]){
+                    dfs(grid, i, j, k, i, j, k, 0);
+                    answer.push_back(a);
+                    a = 0;
+                }
+            }
+        }
+    }
+    sort(answer.begin(), answer.end());
+    
+    return answer;
+}

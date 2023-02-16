@@ -7,7 +7,7 @@ using namespace std;
 int N, K, L; // 크기, 사과, 변환
 int head_x, head_y, tail_x, tail_y; // 현재 위치
 int head_direction;
-char direction_list[4] = { 'R','U','L','D' }; // 바라보는 방향 회전 고려하여 순서 정하기
+// char direction_list[4] = { 'R','U','L','D' }; // 바라보는 방향 회전 고려하여 순서 정하기
 int t = 0;
 
 bool MoveAndHit(char turn, vector<vector<int>>& board) {

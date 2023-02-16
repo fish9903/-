@@ -13,7 +13,10 @@ int N, K, L; // 크기, 사과, 변환
 */
 
 int t = 0; // time
+// 0: right, 1: up, 2: left, 3: down
 char direction_list[4] = { 'R', 'D', 'L', 'U' }; // 회전 고려하여 순서
+int turn_right[4] = { 1, 2, 3, 0 };
+int turn_left[4] = { 3, 0, 1, 2 };
 int head_direction = 0; // R
 int head_x = 1, head_y = 1;
 int tail_x = 1, tail_y = 1;
@@ -75,11 +78,14 @@ int main() {
 	while (1) {
 		// 방향 정하기
 		if (um.find(t) != um.end()) { // time 찾으면 head direction 갱신
+			// turn
 			// L: 왼쪽 90도, D: 오른쪽 90도
 			if (um[t] == 'D')
-				head_direction = (head_direction + 1) % 4;
+				//head_direction = (head_direction + 1) % 4;
+				head_direction = turn_right[head_direction];
 			else
-				head_direction = (head_direction - 1 + 4) % 4;
+				//head_direction = (head_direction - 1 + 4) % 4;
+				head_direction = turn_left[head_direction];
 		}
 
 		//for (int i = 0; i < N + 2; i++) {
