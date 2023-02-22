@@ -1,11 +1,14 @@
 https://gall.dcinside.com/board/view/?id=programming&no=1358794
 
-일반적인 sort와 queueu의 priority_queue의 sort에서 compare기준이 다르다(반대)
+일반적인 sort와 queue의 priority_queue의 sort에서 compare기준이 다르다(반대)
 set, map, unordered_set, unordered_map
 next_permutation
 
     ios::sync_with_stdio(0);
     cin.tie(0);
+
+begin(array), begin(array[0])
+*max_element, *min_element
 
 빛의 경로 사이클 DFS, BFS로
 #include <string>
