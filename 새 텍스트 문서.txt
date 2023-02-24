@@ -9,6 +9,7 @@ next_permutation
 
 begin(array), begin(array[0])
 *max_element, *min_element
+백트래킹
 
 빛의 경로 사이클 DFS, BFS로
 #include <string>

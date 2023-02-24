@@ -1,49 +1,73 @@
 #include <string>
 #include <vector>
-#include <cmath>
 #include <queue>
 #include <algorithm>
+#include <set>
 #include <iostream>
 
-#define pii pair<int,int>
 
 using namespace std;
 
-int solution(int storey) {
-    int answer = 0;
-    string s = to_string(storey);
-    int digit = s.length(); // 자릿수
-    int div1 = pow(10, digit - 1);
-    int div2 = pow(10, digit);
-    vector<int> v; // cnt
+int answer = 0;
+vector<pair<int, int>> queen;
+set<int> setX;
+set<int> setY;
 
-    queue<pii> q;
-    int cnt = 0;
-    q.push({ storey, cnt }); // num, cnt
-    while (!q.empty()) {
-        int num = q.front().first;
-        int cnt = q.front().second;
-        q.pop();
-
-        if (num < 10) {
-            v.push_back(cnt + num);
-            v.push_back(cnt + 10 - num + 1); // 반올림: + 1
-        }
-        else {
-            int remain = num % 10;
-            num /= 10;
-            q.push({ num, cnt + remain });
-            q.push({ num + 1, cnt + 10 - remain });
+int solution(int n) {
+    int i, j;
+    vector<vector<int>> board(n, vector<int>(n, 0));
+    vector<pair<int, int>> candidate;
+    for (i = 0; i < n; i++) {
+        for (j = 0; j < n; j++) {
+            candidate.push_back({ i, j });
         }
     }
-    sort(v.begin(), v.end());
 
-    answer = v[0];
+    // combination
+    vector<int> c(n * n, 0);
+    fill(c.end() - n, c.end(), 1);
+    do {
+        vector<vector<int>> temp = board;
+        queen.clear();
+        setX.clear();
+        setY.clear();
+
+        for (i = 0; i < n * n; i++) {
+            if (c[i] == 1 && !setX.count(candidate[i].first) && !setY.count(candidate[i].second)) { // select
+                queen.push_back({ candidate[i].first, candidate[i].second });
+                setX.insert(candidate[i].first);
+                setY.insert(candidate[i].second);
+                //temp[candidate[i].first][candidate[i].second] = 1; // queen
+            }
+        }
+
+        int s = queen.size();
+        int flag = 1;
+        if (s == n) {
+            for (i = 0; i < s - 1; i++) {
+                for (j = i + 1; j < s; j++) {
+                    if (queen[i].first == queen[j].first || queen[i].second == queen[j].second || abs(queen[i].first - queen[j].first) == abs(queen[i].second - queen[j].second)) {
+                        flag = 0;
+                        break;
+                    }
+                }
+            }
+            if (flag) {
+                for (auto a : queen)
+                    cout << a.first << ',' << a.second << endl;
+                answer++;
+            }
+        }
+            
+    } while (next_permutation(c.begin(), c.end()));
+
 
     return answer;
 }
+
 int main() {
-    cout << solution(555);
+    solution(4);
+    cout << answer << endl;
 
     return 0;
 }
