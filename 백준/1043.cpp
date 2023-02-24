@@ -70,7 +70,7 @@ int main() {
 			int p2 = findParent(truth_p[j]);
 			if (p1 == p2)
 				truth[i] = 1;
-		}		
+		}
 	}
 
 	/*for (int i = 1; i <= N; i++)

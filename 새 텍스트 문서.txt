@@ -10,6 +10,8 @@ next_permutation
 begin(array), begin(array[0])
 *max_element, *min_element
 백트래킹
+유클리드 호제법
+1043 -> union find로 해보기
 
 빛의 경로 사이클 DFS, BFS로
 #include <string>
