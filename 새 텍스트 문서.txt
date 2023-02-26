@@ -12,6 +12,7 @@ begin(array), begin(array[0])
 백트래킹
 유클리드 호제법
 1043 -> union find로 해보기
+lower_bound, upper_bound
 
 빛의 경로 사이클 DFS, BFS로
 #include <string>

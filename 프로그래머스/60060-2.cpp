@@ -25,7 +25,7 @@ vector<int> solution(vector<string> words, vector<string> queries) {
     for(i = 0; i < qs; i++) {
         string pattern = "";
         int l = queries[i].length();
-
+        
         for(j = 0; j < l; j++) {
             if(queries[i][j] != '?') pattern += queries[i][j];
         }
