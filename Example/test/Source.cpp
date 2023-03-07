@@ -1,45 +1,66 @@
+// union find 에서 주의할 것
+// 1. parent 설정 기준을 명확히 할 것
+// 2. parent 배열 완성 후, 이를 직접 사용하지 말고 findParent(parent[i])로 한번 더 계산할 것
+
 #include <string>
 #include <vector>
 #include <algorithm>
-#include <iostream>
 #include <set>
+#include <iostream>
+
 using namespace std;
 
-multiset<string> want_set;
+set<int> answer;
+vector<int> parent;
 
-int solution(vector<string> want, vector<int> number, vector<string> discount) {
-    int answer = 0;
-    int size = want.size();
-    for (int i = 0; i < size; i++) {
-        for (int j = 0; j < number[i]; j++) {
-            want_set.insert(want[i]);
+int findParent(int a) {
+    if (parent[a] != a) {
+        parent[a] = findParent(parent[a]);
+    }
+    return parent[a];
+}
+
+bool merge(int a, int b) {
+    a = findParent(a);
+    b = findParent(b);
+    if (a == b) return false;
+
+    if (a < b) parent[b] = a;
+    else parent[a] = b;
+    //parent[b] = a;
+    return true;
+}
+
+int solution(int n, vector<vector<int>> computers) {
+    for (int i = 0; i < n; i++) parent.push_back(i);
+
+    // union find
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            if (i != j && computers[i][j] == 1)
+                merge(i, j);
         }
     }
 
-    size = discount.size();
-    multiset<string> temp;
-    for (int i = 0; i <= size - 10; i++) {
-        for (int j = i; j < i + 10; j++) {
-            temp.insert(discount[i]);
-        }
-        if (temp == want_set)
-            answer++;
-        temp.clear();
+    for (int i = 0; i < n; i++) parent[i] = findParent(parent[i]);
+
+    for (int i = 0; i < n; i++) {
+        answer.insert((parent[i]));
     }
 
-    return answer;
+    return answer.size();
 }
 
 int main() {
-    vector<string> want = { "banana", "apple", "rice", "port", "pot" };
-    vector<int> number = { 3, 2, 2, 2, 1 };
-    vector<string> discount = { "chicken", "apple", "apple", "banana", "rice", "apple", "pork", "banana", "pork", "rice", "pot", "banana", "apple", "banana" };
-    solution(want, number, discount);
+    solution(7, { { 1,0,0,0,0,0,1 },
+        { 0,1,1,0,1,0,0 },
+        { 0,1,1,1,0,0,0 },
+        { 0,0,1,1,0,0,0 },
+        { 0,1,0,0,1,1,0 },
+        { 0,0,0,0,1,1,1 },
+        { 1,0,0,0,0,1,1 } });
 
-    multiset<int> c = { 1,1,2,3 };
-    set<int> a = { 1,1,2,3 };
-    set<int> b = { 3,2,1 };
-    if (a == b) cout << "same" << endl;
+    for (int i = 0; i < 7; i++) cout << parent[i] << endl;
 
     return 0;
 }
