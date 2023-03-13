@@ -13,6 +13,7 @@ begin(array), begin(array[0])
 유클리드 호제법
 1043 -> union find로 해보기
 lower_bound, upper_bound
+priority_queue에서 sort: NlogN, push와 pop: logN임
 
 컴퓨터/임베디드 시스템 부팅 과정
 
