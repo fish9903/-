@@ -4,19 +4,37 @@
 
 using namespace std;
 
-int board[102][102];
-
-int solution(int m, int n, vector<vector<int>> puddles) {
+int solution(vector<int> A, vector<int> B) {
     int answer = 0;
 
-    fill(&board[0][0], &board[101][102], 0);
+    sort(A.begin(), A.end());
+    sort(B.begin(), B.end());
 
-    for (int i = 1; i <= n; i++) {
-        for (int j = 1; j <= m; j++) {
-            board[i][j] = puddles[i - 1][j - 1];
+    int Astart = 0, Bstart = 0;
+    int end = A.size();
+
+    while (Astart < end && Bstart < end) {
+        int a = A[Astart];
+        int b = B[Bstart];
+
+        while (a > b) {
+            Bstart++;
+            if (Bstart == end) {
+                break;
+            }
+            b = B[Bstart];
+        }
+        if (a < b) {
+            answer++;
+            Astart++;
+            Bstart++;
         }
     }
 
-
     return answer;
+}
+
+int main() {
+    solution({ 2,2,2,2 }, { 2,2,2,2 });
+    return 0;
 }
