@@ -24,7 +24,7 @@ vector<int> solution(vector<string> gems) {
     int start = 0, end = 0; // 2 pointer
     int dist = 1e9;
     int right = 1, left = 1;
-    while (end <= gem_s && start <= gem_s) {
+    while (end < gem_s && start < gem_s) {
         map_s = m.size();
 
         if (map_s == set_s) {
