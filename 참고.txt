@@ -26,4 +26,8 @@ ISO 26262
 
 sliding window maxium 정리(카카오 기출, leetcode)
 
+다익스트라, 플로이드-워셀 공부하고 풀어보기
+https://school.programmers.co.kr/learn/courses/30/lessons/72413
+
+
 면접 때 노트, 펜 챙겨서 새로 듣는 것과 고칠점 메모하기
