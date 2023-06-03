@@ -18,6 +18,8 @@ priority_queue에서 sort: NlogN, push와 pop: logN임
 
 queue같은 자료구조에 class를  넣는경우(오버로딩? 라이딩? 구현), 우선순위큐는 다르고, sort에 cmp함수로도 연습
 
+https://www.acmicpc.net/workbook/view/10475
+
 컴퓨터/임베디드 시스템 부팅 과정
 esp, ebp 레지스터와 보안 BOF취약점
 
