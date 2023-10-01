@@ -90,10 +90,7 @@ int solution(vector<int> queue1, vector<int> queue2) {
     
     cout << left << ' ' << right << endl;
     
-    if(answer1 == -1 && answer2 == -1){
-        return -1;
-    }
-    else if(answer1 == -1 || answer2 == -1){
+    if(answer1 == -1 || answer2 == -1){
         return std::max(answer1, answer2);
     }
     else{
