@@ -50,4 +50,4 @@ int solution(string begin, string target, vector<string> words) {
     
     answer = Min;
     return answer;
-}
+} 
